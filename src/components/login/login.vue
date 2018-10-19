@@ -94,8 +94,5 @@
 	#login{
 		width: 50%;
 		margin: 0 auto;
-		h1{
-			// font-size: 12px;
-		}
 	}
 </style>
