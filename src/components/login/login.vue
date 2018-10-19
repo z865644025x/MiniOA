@@ -6,7 +6,7 @@
 				<el-input v-model="form.userName"></el-input>
 			</el-form-item>
 			<el-form-item label="密码：" prop="userPwd">
-					<el-input v-model="form.userPwd"></el-input>
+					<el-input type="password" v-model="form.userPwd"></el-input>
 				</el-form-item>
 		</el-form>
 		<el-button @click="login('form')">登录</el-button>
@@ -34,13 +34,15 @@
 			login(form){
 				this.$refs[form].validate((valid)=>{
 					if(valid){
-						this.$http.post('https://easy-mock.com/mock/5bae2935346f071866acba7f/oa/user')
+						this.http.post('/api/security/login',{account:this.form.userName,password:this.form.userPwd})
 						.then((response)=>{
-							let data = response.data;
-							console.log(data);
-							console.log(response);
-							this.setCookie(this.form.userName,this.form.userPwd,3);
-							this.$router.replace('/');
+              if(response.status == 200){
+                let data = response.data;
+                console.log(data);
+                console.log(response);
+                // this.setCookie(this.form.userName,this.form.userPwd,3);
+                this.$router.replace('/');
+              }
 						})
 						.catch((error)=>{
 							console.log('接口读取错误了');
