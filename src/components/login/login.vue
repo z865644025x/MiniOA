@@ -34,7 +34,8 @@
 			login(form){
 				this.$refs[form].validate((valid)=>{
 					if(valid){
-						this.http.post('/api/security/login',{account:this.form.userName,password:this.form.userPwd})
+						// this.http.post('/api/security/login',{account:this.form.userName,password:this.form.userPwd})
+						this.http.post('https://easy-mock.com/mock/5bae2935346f071866acba7f/oa/user')
 						.then((response)=>{
               if(response.status == 200){
                 let data = response.data;
