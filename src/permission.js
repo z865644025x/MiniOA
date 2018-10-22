@@ -12,7 +12,9 @@ router.beforeEach((to, from, next) => {
 	// debugger
 	console.log(to.path);
 	console.log(from);
-	console.log(asyncRouterMap);
+  console.log(asyncRouterMap);
+  // router.addRoutes(asyncRouterMap);
+  // this.$router.replace('/');
 	// console.log()
 	next();
 })

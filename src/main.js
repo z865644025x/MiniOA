@@ -7,7 +7,7 @@ import 'element-ui/lib/theme-chalk/index.css'
 import apihttp from './api/http'
 import store from './store/store.js'
 import router from './router'
-import './permission' // 路由挂载 permission control
+import './permission.js' // 路由挂载 permission control
 
 
 

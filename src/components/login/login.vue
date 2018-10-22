@@ -34,9 +34,11 @@
 			login(form){
 				this.$refs[form].validate((valid)=>{
 					if(valid){
-						// this.http.post('/api/security/login',{account:this.form.userName,password:this.form.userPwd})
-						this.http.post('https://easy-mock.com/mock/5bae2935346f071866acba7f/oa/user')
+            console.log(123);
+						this.http.post('/api/security/login',{account:this.form.userName,password:this.form.userPwd})
+						// this.http.post('https://easy-mock.com/mock/5bae2935346f071866acba7f/oa/user')
 						.then((response)=>{
+              console.log(response);
               if(response.status == 200){
                 let data = response.data;
                 console.log(data);
@@ -91,7 +93,7 @@
 		}
 	}
 </script>
-<style scoped lang="scss">
+<style scoped>
 	#login{
 		width: 50%;
 		margin: 0 auto;

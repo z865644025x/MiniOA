@@ -14,21 +14,30 @@ export const constantRouterMap = [
 	// 	path: '/',
 	// 	name: '首页',
 	// 	component: Main
-	// },
-	{
+  // },
+  {
+		path:'/login',
+		name:'登录页',
+		component:Login
+  },
+  {
 		path: '/',
+		name: '首页',
+    component: Main,
+    redirect:'/index',
+    children:[
+      { path:'/index',name:'首页',component:HelloWorld }
+    ]
+  },
+  {
+		path: '/query',
 		name: '查询栏',
 		component: Main,
 		children:[
 			{path:'query',name:'菜单1',component:HelloWorld},
 			{path:'queryText',name:'菜单2',component:HelloWorld},
 		]
-	},
-	{
-		path:'/login',
-		name:'登录页',
-		component:Login
-	}
+  }
 ]
 
 // 实例化vue的时候只挂载constantRouter

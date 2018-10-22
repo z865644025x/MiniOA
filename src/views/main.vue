@@ -5,8 +5,11 @@
       <el-container>
         <el-aside width="203px">
 					<el-menu router :default-active="$route.path" background-color="#545c64" text-color="#fff" class="el-menu-demo" active-text-color="#ffd04b">
-						<template v-for="item in $router.options.routes">
-							<el-menu-item v-if="!item.children || item.children.length == 1" :index="item.path" :key="item.path" >  
+            <template v-for="item in $router.options.routes">
+							<el-menu-item v-if="!item.children" :index="item.path" :key="item.path" >  
+								{{item.name}}
+							</el-menu-item>
+              <el-menu-item v-if="item.children.length == 1" :index="item.path.redirect" :key="item.path.redirect" >  
 								{{item.name}}
 							</el-menu-item>
 							<el-submenu v-else :index="item.path" :key="item.path">
@@ -37,11 +40,12 @@
     },
     methods:{
 			getUserInfo(){
+        // this.http.post('/api/security/info')
 				this.http.post('https://easy-mock.com/mock/5bae2935346f071866acba7f/oa/user')
 				.then(response => {
 					if(response.status == 200){
-						console.log(response.data);
-						
+            let resources = response.data.data.resources;
+            console.log(resources);
 					}
 					else{
 						this.$router.replace('/login');
@@ -52,7 +56,7 @@
 				})
 			},
 			test(){
-				console.log('this is test');
+				console.log(this.$router.options.routes);
 			}
 		}
 	}
