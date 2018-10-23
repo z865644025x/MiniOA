@@ -1,27 +1,34 @@
 <template>
 	<div id="main">
     <el-container>
-      <el-header>Header</el-header>
+      <el-header>
+        <div id="title">MINI-OA</div>
+        <div class="function-icons">
+          
+        </div>
+      </el-header>
       <el-container>
-        <el-aside width="203px">
-					<el-menu router :default-active="$route.path" background-color="#545c64" text-color="#fff" class="el-menu-demo" active-text-color="#ffd04b">
-            <template v-for="item in $router.options.routes">
-							<el-menu-item v-if="!item.children" :index="item.path" :key="item.path" >  
-								{{item.name}}
-							</el-menu-item>
-              <el-menu-item v-if="item.children.length == 1" :index="item.path.redirect" :key="item.path.redirect" >  
-								{{item.name}}
-							</el-menu-item>
-							<el-submenu v-else :index="item.path" :key="item.path">
-								<template slot="title">{{ item.name }}</template>
-								<el-menu-item v-for="child in item.children" :index="item.path + '/' + child.path" :key="item.path + '/' + child.path">{{ child.name }}</el-menu-item>
-							</el-submenu>
-						</template>
-					</el-menu>
-				</el-aside>
+        <el-scrollbar>
+          <el-aside width="215px">
+            <el-menu router :default-active="$route.path" background-color="#545c64" text-color="#fff" class="el-menu-demo" active-text-color="#ffd04b">
+              <template v-for="item in $router.options.routes">
+                <el-menu-item v-if="!item.children && item.name != '登录页'" :index="item.path" :key="item.path" >  
+                  {{item.name}}
+                </el-menu-item>
+                <el-menu-item v-else-if="item.name == '首页'" :index="item.redirect" :key="item.redirect" >  
+                  {{item.name}}
+                </el-menu-item>
+                <el-submenu v-else-if="item.name != '登录页'" :index="item.path" :key="item.path">
+                  <template slot="title">{{ item.name }}</template>
+                  <el-menu-item v-for="child in item.children" :index="item.path + '/' + child.path" :key="item.path + '/' + child.path">{{ child.name }}</el-menu-item>
+                </el-submenu>
+              </template>
+            </el-menu>
+          </el-aside>
+        </el-scrollbar>
         <el-main>
-					<router-view></router-view>
-				</el-main>
+          <router-view></router-view>
+        </el-main>
       </el-container>
     </el-container>
 	</div>
@@ -48,7 +55,7 @@
             console.log(resources);
 					}
 					else{
-						this.$router.replace('/login');
+						// this.$router.replace('/login');
 					}
 				})
 				.catch(error => {
@@ -61,6 +68,36 @@
 		}
 	}
 </script>
-<style>
-
+<style scoped lang="scss">
+  #main{
+    height: 100%;
+    .el-container{
+      height: 100%;
+      .el-header{
+        background-color:#545c64;
+        #title{
+          color:#FFFFFF;
+          font-size:18px;
+          width: 183px;
+          height:60px;
+          line-height: 60px;
+          float:left;
+        }
+        .function-icons{
+          height: 60px;
+          line-height:60px;
+        }
+      }
+      .el-menu{
+        height:100%;
+        border-right:none;
+      }
+      .el-main{
+        background-color: #FFFFFF;
+      }
+      .el-aside{
+        height:100%;
+      }
+    }
+  }
 </style>

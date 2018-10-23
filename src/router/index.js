@@ -31,11 +31,35 @@ export const constantRouterMap = [
   },
   {
 		path: '/query',
-		name: '查询栏',
+		name: '办公流程',
 		component: Main,
 		children:[
-			{path:'query',name:'菜单1',component:HelloWorld},
-			{path:'queryText',name:'菜单2',component:HelloWorld},
+			{path:'query1',name:'工作签报',component:HelloWorld},
+      {path:'query2',name:'公司发文',component:HelloWorld},
+      {path:'query3',name:'公司收文',component:HelloWorld},
+      {path:'query4',name:'财务报销',component:HelloWorld},
+		]
+  },
+  {
+		path: '/task',
+		name: '任务管理',
+		component: Main,
+		children:[
+			{path:'task1',name:'工作签报',component:HelloWorld},
+      {path:'task2',name:'公司发文',component:HelloWorld},
+      {path:'task3',name:'公司收文',component:HelloWorld},
+      {path:'task4',name:'财务报销',component:HelloWorld},
+		]
+  },
+  {
+		path: '/office',
+		name: '办公流程',
+		component: Main,
+		children:[
+			{path:'office1',name:'工作签报',component:HelloWorld},
+      {path:'office2',name:'公司发文',component:HelloWorld},
+      {path:'office3',name:'公司收文',component:HelloWorld},
+      {path:'office4',name:'财务报销',component:HelloWorld},
 		]
   }
 ]

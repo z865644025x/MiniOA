@@ -10,9 +10,9 @@ import { Message } from 'element-ui'
 
 router.beforeEach((to, from, next) => {
 	// debugger
-	console.log(to.path);
-	console.log(from);
-  console.log(asyncRouterMap);
+	// console.log(to.path);
+	// console.log(from);
+  // console.log(asyncRouterMap);
   // router.addRoutes(asyncRouterMap);
   // this.$router.replace('/');
 	// console.log()
