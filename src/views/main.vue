@@ -2,10 +2,7 @@
 	<div id="main">
     <el-container>
       <el-header>
-        <div id="title">MINI-OA</div>
-        <div class="function-icons">
-          
-        </div>
+				<app-header></app-header>
       </el-header>
       <el-container>
         <el-scrollbar>
@@ -34,7 +31,13 @@
 	</div>
 </template>
 <script>
+	// 引入公共头部组件
+	import appHeader from "../components/header.vue";
 	export default {
+		// 生命公共头部组件
+		components:{
+			appHeader
+		},
 		data(){
 			return {
 				userName:'',
@@ -73,21 +76,9 @@
     height: 100%;
     .el-container{
       height: 100%;
-      .el-header{
-        background-color:#545c64;
-        #title{
-          color:#FFFFFF;
-          font-size:18px;
-          width: 183px;
-          height:60px;
-          line-height: 60px;
-          float:left;
-        }
-        .function-icons{
-          height: 60px;
-          line-height:60px;
-        }
-      }
+			.el-header{
+				padding: 0;
+			}
       .el-menu{
         height:100%;
         border-right:none;
