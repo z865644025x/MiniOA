@@ -1,3 +1,5 @@
+
+/* elementUI 部分样式重构 */
 .el-scrollbar{
   height: 100%;
   background-color: #545c64;
@@ -7,6 +9,15 @@
   overflow-x: hidden;   
 }
 
-/* .el-scrollbar__view{
-  height: 100%;
-} */
+/* 基础样式 */
+.pull-left{
+  float: left;
+}
+
+.pull-right{
+  float: right;
+}
+
+.clearfix{
+  overflow: hidden;
+}
