@@ -5,7 +5,8 @@ Vue.use(Vuex);
 let store = new Vuex.Store({
     // 1. state
     state:{
-        city:"城市名"
+        city:"城市名",
+        menuList:[]
     },
 
     // 2. getters
@@ -13,6 +14,10 @@ let store = new Vuex.Store({
         // 参数列表state指的是state数据
         getCityFn(state){
             return state.city;
+        },
+        // 获取侧边栏列表
+        getMenuList(state){
+          return state.menuList;
         }
     },
     // 3. actions
@@ -27,6 +32,10 @@ let store = new Vuex.Store({
             // 跟后台打交道
             // 调用mutaions里面的方法
             commit("setCity", name);
+        },
+        // 设置侧边栏信息
+        setMenuList({ commit },menuList){
+            commit("setMenuList",menuList);
         }
     },
     // 4. mutations
@@ -35,6 +44,10 @@ let store = new Vuex.Store({
         // name传递过来的数据
         setCity(state, name){
             state.city = name;//将传参设置给state的city
+        },
+        // 调用接口方法
+        setMenuList(state, menuList){
+          state.menuList = menuList;
         }
     }
 });

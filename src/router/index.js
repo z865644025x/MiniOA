@@ -10,11 +10,6 @@ Vue.use(Router)
 //所有权限通用路由表 
 //如首页和登录页和一些不用权限的公用页面
 export const constantRouterMap = [
-	// {
-	// 	path: '/',
-	// 	name: '首页',
-	// 	component: Main
-  // },
   {
 		path:'/login',
 		name:'登录页',
@@ -26,40 +21,16 @@ export const constantRouterMap = [
     component: Main,
     redirect:'/index',
     children:[
-      { path:'/index',name:'首页',component:HelloWorld }
+      { path:'/index',name:'首页',component:HelloWorld },
+      // { path:'/pages/resources',name:'资源管理',component:HelloWorld }
     ]
   },
   {
-		path: '/query',
+		path: '/pages',
 		name: '办公流程',
 		component: Main,
 		children:[
-			{path:'query1',name:'工作签报',component:HelloWorld},
-      {path:'query2',name:'公司发文',component:HelloWorld},
-      {path:'query3',name:'公司收文',component:HelloWorld},
-      {path:'query4',name:'财务报销',component:HelloWorld},
-		]
-  },
-  {
-		path: '/task',
-		name: '任务管理',
-		component: Main,
-		children:[
-			{path:'task1',name:'工作签报',component:HelloWorld},
-      {path:'task2',name:'公司发文',component:HelloWorld},
-      {path:'task3',name:'公司收文',component:HelloWorld},
-      {path:'task4',name:'财务报销',component:HelloWorld},
-		]
-  },
-  {
-		path: '/office',
-		name: '办公流程',
-		component: Main,
-		children:[
-			{path:'office1',name:'工作签报',component:HelloWorld},
-      {path:'office2',name:'公司发文',component:HelloWorld},
-      {path:'office3',name:'公司收文',component:HelloWorld},
-      {path:'office4',name:'财务报销',component:HelloWorld},
+			{path:'resources',name:'工作签报',component:Login},
 		]
   }
 ]

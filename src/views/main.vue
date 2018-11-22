@@ -1,47 +1,28 @@
 <template>
 	<div id="main">
     <el-container>
-      <el-header>
-				<app-header></app-header>
-      </el-header>
+      <el-header><app-header :name='this.username'></app-header></el-header>
       <el-container>
-        <el-scrollbar>
-          <el-aside width="215px">
-            <el-menu router :default-active="$route.path" background-color="#545c64" text-color="#fff" class="el-menu-demo" active-text-color="#ffd04b">
-              <template v-for="item in $router.options.routes">
-                <el-menu-item v-if="!item.children && item.name != '登录页'" :index="item.path" :key="item.path" >  
-                  {{item.name}}
-                </el-menu-item>
-                <el-menu-item v-else-if="item.name == '首页'" :index="item.redirect" :key="item.redirect" >  
-                  {{item.name}}
-                </el-menu-item>
-                <el-submenu v-else-if="item.name != '登录页'" :index="item.path" :key="item.path">
-                  <template slot="title">{{ item.name }}</template>
-                  <el-menu-item v-for="child in item.children" :index="item.path + '/' + child.path" :key="item.path + '/' + child.path">{{ child.name }}</el-menu-item>
-                </el-submenu>
-              </template>
-            </el-menu>
-          </el-aside>
-        </el-scrollbar>
-        <el-main>
-          <router-view></router-view>
-        </el-main>
+        <app-sidebar :menuList='this.resources'></app-sidebar>
+        <el-main><router-view></router-view></el-main>
       </el-container>
     </el-container>
 	</div>
 </template>
 <script>
 	// 引入公共头部组件
-	import appHeader from "../components/header.vue";
+	import appHeader from "../components/header";
+  import appSidebar from "../components/sidebar";
 	export default {
 		// 生命公共头部组件
 		components:{
-			appHeader
+			appHeader,
+      appSidebar
 		},
 		data(){
 			return {
-				userName:'',
-				userPwd:''
+        username:'',
+        resources:[],
 			}
     },
 		mounted() {
@@ -49,22 +30,26 @@
 			this.test();
     },
     methods:{
+      // userInfo
 			getUserInfo(){
-        // this.http.post('/api/security/info')
-				this.http.post('https://easy-mock.com/mock/5bae2935346f071866acba7f/oa/user')
-				.then(response => {
-					if(response.status == 200){
-            let resources = response.data.data.resources;
-            console.log(resources);
+        this.http.post('/api/security/info')
+				.then(res => {
+					if(res.status == 200){
+            let data = res.data.data;
+            this.$store.dispatch('setMenuList',data.resources);
+            this.resources = this.$store.getters.getMenuList;
+            console.log(this.resources);
+            this.username = data.user.userName;
 					}
 					else{
-						// this.$router.replace('/login');
+						this.$router.replace('/login');
 					}
 				})
 				.catch(error => {
 					console.log(error)
 				})
-			},
+      },
+      
 			test(){
 				console.log(this.$router.options.routes);
 			}
@@ -79,10 +64,6 @@
 			.el-header{
 				padding: 0;
 			}
-      .el-menu{
-        height:100%;
-        border-right:none;
-      }
       .el-main{
         background-color: #FFFFFF;
       }

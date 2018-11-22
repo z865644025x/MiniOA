@@ -8,11 +8,24 @@
 		</div>
     <div class="user-info pull-right">
       <div class="user-icon pull-left"><img src="../assets/images/user.jpg" alt="用户头像"></div>
-      <div class="user-name pull-left">UserInfo</div>
+      <div class="user-name pull-left">{{name}}</div>
     </div>
     <div class="clearfix"></div>
 	</div>
 </template>
+<script>
+  
+  export default {
+    props:['name'],
+
+    data(){
+      return{
+        username:'this is a Test',
+      }
+    }
+  };
+
+</script>
 <style scoped lang="scss">
 	#header{
     height: 60px;
